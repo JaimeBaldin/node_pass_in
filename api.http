@@ -1,0 +1,8 @@
+POST http://localhost:3333/events
+Content-Type: application/json
+
+{
+    "title": "Concert",
+    "details": "A concert is a live music",
+    "maximumAttendees": 100
+}
