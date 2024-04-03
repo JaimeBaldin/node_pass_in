@@ -25,14 +25,16 @@ export async function registerForEvent(app: FastifyInstance){
             const { eventId } = request.params;
             const { name, email } = request.body;
 
+
+
             const attendee =  await prisma.attendee.create({
                 data: {
                     name,
                     email,
                     eventId,
                 }
-            });
+            })
 
-            return
+            return reply.status(201).send({attendeeId: attendee.id});
         })
 }
