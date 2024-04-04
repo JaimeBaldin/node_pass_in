@@ -2,18 +2,18 @@ POST http://localhost:3333/events
 Content-Type: application/json
 
 {
-    "title": "Concert é top",
-    "details": "A concert is a live music",
-    "maximumAttendees": 100
+    "title": "Novo evento",
+    "details": "Evento aleatorio",
+    "maximumAttendees": 2
 }
 
 ###
 
-POST http://localhost:3333/events/d423d746-0cfe-4655-bf35-96485c0b1b4d/attendees
+POST http://localhost:3333/events/94a5d872-9e67-4a81-a594-6926ec0a91ef/attendees
 Content-Type: application/json
 
 
 {
-    "name": "Peter branch",
-    "email": "peter@gmail.com"
+    "name": "Peter3 branch",
+    "email": "peter3@gmail.com"
 }
