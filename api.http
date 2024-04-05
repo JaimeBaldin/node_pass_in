@@ -17,3 +17,9 @@ Content-Type: application/json
     "name": "Peter3 branch",
     "email": "peter3@gmail.com"
 }
+
+
+
+###
+
+GET http://localhost:3333/events/d423d746-0cfe-4655-bf35-96485c0b1b4d/attendees

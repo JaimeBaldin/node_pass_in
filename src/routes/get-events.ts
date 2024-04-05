@@ -11,12 +11,36 @@ export async function getEvent(app: FastifyInstance) {
                 params: z.object({
                     eventId: z.string().uuid()
                 }),
-                response:{},
+                response:{
+                    200: {
+                        event: z.object({
+                            id: z.string().uuid(),
+                            title: z.string(),
+                            slug: z.string(),
+                            details: z.string().nullable(),
+                            maximumAttendees: z.number().int().nullable(),
+                            attendeesAmount: z.number().int(),
+                        })
+                    },
+                },
             }
         }, async (request, reply) =>{
              const { eventId } = request.params;
 
              const event = await prisma.event.findUnique({
+
+                    select: {
+                        id: true,
+                        title: true,
+                        slug: true,
+                        details: true,
+                        maximumAttendees: true,
+                        _count: {
+                            select: {
+                                attendees: true
+                            }
+                        }
+                    },
                     where: {
                         id: eventId
                     }
@@ -26,7 +50,16 @@ export async function getEvent(app: FastifyInstance) {
                     throw new Error('Event not found');
                 }
 
-                return reply.send({event});
+                return reply.send({
+                    event: {
+                        id: event.id,
+                        title: event.title,
+                        slug: event.slug,
+                        details: event.details,
+                        maximumAttendees: event.maximumAttendees,
+                        attendeesAmount: event._count.attendees
+                    }
+                });
         })
 
 }
