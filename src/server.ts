@@ -4,6 +4,7 @@ import { createEventRoute } from "./routes/create-event";
 import { registerForEvent } from "./routes/register-for-event";
 import { getEvent } from "./routes/get-events";
 import { getAttendeeBadge } from "./routes/get-attendee-badge";
+import { checkIn } from "./routes/check-in";
 
 
 
@@ -16,6 +17,7 @@ app.register(createEventRoute)
 app.register(registerForEvent)
 app.register(getEvent)
 app.register(getAttendeeBadge)
+app.register(checkIn)
 
 app.listen({port: 3333}).then(() => {
     console.log("Server is running on port 3333");
