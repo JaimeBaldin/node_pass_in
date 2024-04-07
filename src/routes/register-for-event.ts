@@ -2,6 +2,7 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";
 import { prisma } from "../lib/prisma";
 import { FastifyInstance } from "fastify";
+import { BadRequest } from "./_errors/bad-request";
 
 export async function registerForEvent(app: FastifyInstance){
     app
@@ -39,7 +40,7 @@ export async function registerForEvent(app: FastifyInstance){
 
 
             if(attendeeFromEmail){
-                throw new Error("This email already registered for this event");
+                throw new BadRequest("This email already registered for this event");
             }
 
             const [event, amountOfAttendeesForEvent] = await Promise.all([
