@@ -10,6 +10,8 @@ export async function createEventRoute(app: FastifyInstance) {
         .withTypeProvider<ZodTypeProvider>()
             .post('/events', {
                 schema: {
+                    summary: 'Create a new event',
+                    tags: ['events'],
                     body: z.object({
                         title: z.string().min(5),
                         details: z.string().nullable(),
